@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Selection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .payment-form {
+            margin-top: 30px;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">BTK</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Signup</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Selection -->
+    <div class="container payment-form">
+        <h3>Select Payment Method</h3>
+        <form id="paymentForm">
+            <div class="mb-3">
+                <label for="paymentMethod" class="form-label">Payment Method</label>
+                <select class="form-select" id="paymentMethod" onchange="showPaymentFields()">
+                    <option selected>Select payment method</option>
+                    <option value="card">Card (Debit/Credit)</option>
+                    <option value="upi">UPI</option>
+                </select>
+            </div>
+
+            <!-- Card Payment Fields -->
+            <div id="cardPaymentFields" style="display:none;">
+                <div class="mb-3">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" placeholder="Enter 14-digit card number">
+                </div>
+                <div class="mb-3">
+                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY">
+                </div>
+                <div class="mb-3">
+                    <label for="cvv" class="form-label">CVV</label>
+                    <input type="text" class="form-control" id="cvv" placeholder="Enter CVV">
+                </div>
+            </div>
+
+            <!-- UPI Payment Fields -->
+            <div id="upiPaymentFields" style="display:none;">
+                <div class="mb-3">
+                    <label for="upiId" class="form-label">UPI ID</label>
+                    <input type="text" class="form-control" id="upiId" placeholder="Enter your UPI ID">
+                </div>
+            </div>
+
+            <!-- Proceed Button -->
+            <a href="#" class="btn btn-primary" onclick="proceedPayment()">Proceed with Payment</a>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>BTK Company</strong></p>
+        <p>Address: 1234 Random Street, Some City, 56789</p>
+        <p>Contact: info@btk.com | Phone: +1234567890</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to toggle payment fields -->
+    <script>
+        function showPaymentFields() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            const cardFields = document.getElementById('cardPaymentFields');
+            const upiFields = document.getElementById('upiPaymentFields');
+
+            cardFields.style.display = 'none';
+            upiFields.style.display = 'none';
+
+            if (paymentMethod === 'card') {
+                cardFields.style.display = 'block';
+            } else if (paymentMethod === 'upi') {
+                upiFields.style.display = 'block';
+            }
+        }
+
+        function proceedPayment() {
+    const paymentMethod = document.getElementById('paymentMethod').value;
+    if (paymentMethod === 'card' || paymentMethod === 'upi') {
+        // Redirect to Jio prepaid plans page after the payment method is selected
+        window.location.href = "https://www.jio.com/selfcare/plans/mobility/prepaid-plans-home/";
+    } else {
+        alert('Please select a payment method');
+    }
+}
+
+        
+    </script>
+</body>
+</html>
